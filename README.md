@@ -1,5 +1,9 @@
 # Docker image: ubuntu_apache_php7
 
+- Ubuntu 16.04
+- Apache 2
+- PHP 7.0
+
 Run image with following command:
 
     docker run \
