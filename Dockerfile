@@ -57,5 +57,5 @@ COPY ${APACHE_CONF} /etc/apache2/sites-available/000-default.conf
 RUN a2enmod rewrite
 RUN service apache2 start
 
-EXPOSE 80 5432
+EXPOSE 80
 CMD ["/usr/sbin/apachectl", "-D FOREGROUND"]
