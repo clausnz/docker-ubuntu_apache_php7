@@ -1,7 +1,7 @@
 # Docker image: ubuntu_apache_php7
 
 - Ubuntu 16.04
-- Apache 2
+- Apache 2 with custom config file
 - PHP 7.0
 
 Build image:
