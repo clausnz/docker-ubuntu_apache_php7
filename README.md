@@ -4,6 +4,10 @@
 - Apache 2
 - PHP 7.0
 
+Build image:
+
+    docker build -t ubuntu-apache-php7 .
+
 Run image with following command:
 
     docker run \
@@ -15,7 +19,15 @@ Run image with following command:
         --link my_container_to_link: \
     ubuntu-apache-php7
 
+Docker `docker-compose.yml` section:
 
-Build image:
+    version: "3"
+    services:
+    web:
+        image: "clausnz/ubuntu-apache-php7:v1"
+        restart: "always"
+        ports:
+        - "8000:80"
+        volumes:
+        - .:/var/www/
 
-    docker build -t ubuntu-apache-php7 .
