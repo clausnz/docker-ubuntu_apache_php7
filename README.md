@@ -2,7 +2,7 @@
 
 - Ubuntu 16.04
 - Apache 2 with custom config file
-- PHP 7.0
+- PHP 7.1
 
 Build image:
 
@@ -24,7 +24,7 @@ Docker `docker-compose.yml` section:
     version: "3"
     services:
     web:
-        image: "clausnz/ubuntu-apache-php7:v1"
+        image: "clausnz/ubuntu-apache-php71:latest"
         restart: "always"
         ports:
         - "8000:80"
