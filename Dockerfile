@@ -1,18 +1,14 @@
 FROM ubuntu:16.04
 LABEL author="Claus Bayer" email="claus.bayer@gmail.com"
 
-VOLUME ["/var/www"]
+VOLUME ["/var/www/html"]
 
-ENV APACHE_CONF="apache.conf"
-
-RUN apt-get update \
-    && apt-get install -y software-properties-common \
+RUN apt-get update -y && apt-get install -y software-properties-common \
     && LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php \
     && apt-get update -y \
     && apt-get install -y \
-    #   Apache
+    vim \
     apache2 \
-    #   PHP 7.1
     php7.1 \
     php7.1-xmlrpc \
     php7.1-bz2 \
@@ -52,15 +48,9 @@ RUN apt-get update \
     libapache2-mod-php7.1 \
     php7.1-mysql \
     php7.1-interbase \
-    php-xdebug \
-    #   Tools
-    vim \
-    && rm -rf /var/lib/apt/lists/*
+    php-xdebug
 
-#   Setup Apache
-COPY ${APACHE_CONF} /etc/apache2/sites-available/000-default.conf
 RUN a2enmod rewrite
-RUN service apache2 start
 
 EXPOSE 80
 CMD ["/usr/sbin/apachectl", "-D FOREGROUND"]
