@@ -16,16 +16,19 @@ Docker container with installed Ubuntu, Apache and PHP7.
 
 # Table of Contents
 
-[Debug Example with PHPStorm](#setup-phpstorm-for-debugging)
+* [Build Image](#build-image)
+* [Run Container](#run-container)
+* [Docker-Compose Section](#docker-compose-section)
+* [Debug Example with PHPStorm](#setup-phpstorm-for-debugging)
 
 
-#### Build image:
+## Build Image
 
     git clone https://github.com/clausnz/docker_ubuntu-apache-php.git
     cd docker_ubuntu-apache-php
     docker build -t <tag_name> .
 
-#### Example:
+## Run Container
 
 ##### Run image with following command:
 
@@ -37,7 +40,7 @@ Docker container with installed Ubuntu, Apache and PHP7.
         -v $(pwd):/var/www/html/ \
         clausnz/ubuntu-apache-php:latest
 
-##### Docker `docker-compose.yml` section:
+## Docker-Compose Section
 
     version: "3"
     services:
