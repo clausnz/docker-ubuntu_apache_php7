@@ -14,6 +14,11 @@ Docker container with installed Ubuntu, Apache and PHP7.
 
 - /var/www/html
 
+# Table of Contents
+
+[Debug Example with PHPStorm](#setup-phpstorm-for-debugging)
+
+
 #### Build image:
 
     git clone https://github.com/clausnz/docker_ubuntu-apache-php.git
@@ -48,13 +53,13 @@ Docker container with installed Ubuntu, Apache and PHP7.
 
 As the image is preconfigured with XDebug, you only have to set up your IDE. Here is an example for PHPStorm:
 
-##### Setup XDebug in PHPStorm > Settings > Languages & Frameworks > PHP > Debug
+#### Setup XDebug in PHPStorm > Settings > Languages & Frameworks > PHP > Debug
 ![Setup XDebug](docs/images/phpstorm-setup-xdebug.png)
 
-##### Setup Server in PHPStorm > Settings > Languages & Frameworks > PHP > Servers
+#### Setup Server in PHPStorm > Settings > Languages & Frameworks > PHP > Servers
 ![Setup Server](docs/images/phpstorm-settings-server.png)
 
-##### Setup Run/Debug Configuration
+#### Setup Run/Debug Configuration
 ![Setup Run](docs/images/phpstorm-setup-run.png)
 
-##### No set your breakpoints and you're done!
+#### Set your breakpoints and you're done.
