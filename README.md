@@ -17,7 +17,7 @@ Docker container with installed and configured Ubuntu, Apache, PHP7 and XDebug.
 * [Build Image](#build-image)
 * [Run Container](#run-container)
 * [Docker-Compose Section](#docker-compose-section)
-* [Debug Example with PHPStorm](#setup-phpstorm-for-debugging)
+* [Setup PHPStorm for XDebug with Docker](#setup-phpstorm-for-xdebug-with-docker)
 
 
 ## Volumes and Environment Variables
@@ -63,7 +63,7 @@ The environment variables can be changed with the `-e` parameter
         volumes:
         - .:/var/www/html
         
-## Setup PHPStorm for debugging
+## Setup PHPStorm for XDebug with Docker
 
 As the image is preconfigured with XDebug for Docker debugging, you only have to set up your IDE. Here is an example for PHPStorm:
 
