@@ -9,18 +9,29 @@ Docker container with installed Ubuntu, Apache and PHP7.
 - Ubuntu 16.04
 - Apache 2
 - PHP 7.1
-
-#### Shared volume:
-
-- /var/www/html
+- XDebug
 
 # Table of Contents
+
 
 * [Build Image](#build-image)
 * [Run Container](#run-container)
 * [Docker-Compose Section](#docker-compose-section)
 * [Debug Example with PHPStorm](#setup-phpstorm-for-debugging)
 
+
+## Volumes and Environment Variables
+
+#### Volumes
+
+* /var/www/html
+
+#### Environment Variables
+
+The environment variables can be changed with the `-e` parameter 
+
+* XDEBUG_REMOTE_HOST - When using Mac or Windows as host, this variable is set automatically
+* XDEBUG_REMOTE_PORT - Default 9000
 
 ## Build Image
 
@@ -54,7 +65,7 @@ Docker container with installed Ubuntu, Apache and PHP7.
         
 ## Setup PHPStorm for debugging
 
-As the image is preconfigured with XDebug, you only have to set up your IDE. Here is an example for PHPStorm:
+As the image is preconfigured with XDebug for Docker debugging, you only have to set up your IDE. Here is an example for PHPStorm:
 
 #### Setup XDebug in PHPStorm > Settings > Languages & Frameworks > PHP > Debug
 ![Setup XDebug](docs/images/phpstorm-setup-xdebug.png)
