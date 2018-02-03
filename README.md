@@ -1,15 +1,15 @@
 # Docker Ubuntu / Apache / PHP
 
-Docker container with installed Ubuntu, Apache and PHP7.
+Docker container with installed and configured Ubuntu, Apache, PHP7 and XDebug.
 
 ## About
 
 #### Installed Software:
 
-- Ubuntu 16.04
-- Apache 2
-- PHP 7.1
-- XDebug
+- `Ubuntu 16.04`
+- `Apache 2`
+- `PHP 7.1`
+- `Xdebug v2.5.5`
 
 # Table of Contents
 
@@ -24,14 +24,14 @@ Docker container with installed Ubuntu, Apache and PHP7.
 
 #### Volumes
 
-* /var/www/html
+* `/var/www/html`
 
 #### Environment Variables
 
 The environment variables can be changed with the `-e` parameter 
 
-* XDEBUG_REMOTE_HOST - When using Mac or Windows as host, this variable is set automatically
-* XDEBUG_REMOTE_PORT - Default 9000
+* `XDEBUG_REMOTE_HOST` - When using Mac or Windows as host, this variable is set automatically
+* `XDEBUG_REMOTE_PORT` - Default 9000
 
 ## Build Image
 
