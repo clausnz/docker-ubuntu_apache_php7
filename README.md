@@ -53,15 +53,20 @@ The environment variables can be changed with the `-e` parameter
 
 ## Docker-Compose Section
 
-    version: "3"
-    services:
+Edit `docker-compose.yml`
+
+```
+version: "3"
+
+services:
     web:
         image: "clausnz/ubuntu-apache-php:latest"
         restart: "always"
         ports:
-        - "8000:80"
+            - "8000:80"`
         volumes:
-        - .:/var/www/html
+            - .:/var/www/html`
+```
         
 ## Setup PHPStorm for XDebug with Docker
 
