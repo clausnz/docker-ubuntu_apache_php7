@@ -8,6 +8,8 @@ RUN apt-get update -y && apt-get install -y software-properties-common \
     && apt-get update -y \
     && apt-get install -y \
     vim \
+    dnsutils \
+    net-tools \
     apache2 \
     php7.1 \
     php7.1-xmlrpc \
@@ -51,6 +53,15 @@ RUN apt-get update -y && apt-get install -y software-properties-common \
     php-xdebug
 
 RUN a2enmod rewrite
+
+# entrypoint
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+
+# xdebug
+COPY xdebug.ini /etc/php/7.1/cli/conf.d/xdebug.ini
+COPY xdebug.ini /etc/php/7.1/apache2/conf.d/xdebug.ini
 
 EXPOSE 80
 CMD ["/usr/sbin/apachectl", "-D FOREGROUND"]
