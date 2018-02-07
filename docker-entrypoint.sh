@@ -4,17 +4,12 @@ set -i
 APACHE_XDEBUG_PATH="/etc/php/7.1/apache2/conf.d/xdebug.ini"
 CLI_XDEBUG_PATH="/etc/php/7.1/cli/conf.d/xdebug.ini"
 
-# Set remote host ip from docker var. Only works on Mac or Windows
-if [ -n "$(dig +short docker.for.mac.host.internal)" ]; then
-    XDEBUG_REMOTE_HOST="$(dig +short docker.for.mac.host.internal)"
-elif [ -n "$(dig +short docker.for.win.host.internal)" ]; then
-    XDEBUG_REMOTE_HOST="$(dig +short docker.for.win.host.internal)"
-fi
+MAC_HOST="$(dig +short docker.for.mac.host.internal)"
+WINDOWS_HOST="$(dig +short docker.for.win.host.internal)"
+LINUX_HOST="$(netstat -nr | grep '^0\.0\.0\.0' | awk '{print $2}')"
 
-# If remote host is empty (not set or given as env), set it (may not work correctly for debugging)
-if [ -z "${XDEBUG_REMOTE_HOST}" ]; then
-    XDEBUG_REMOTE_HOST="$(netstat -nr | grep '^0\.0\.0\.0' | awk '{print $2}')"
-fi
+# Set remote host ip from docker var. Works best on Mac or Windows. Linux may not work correctly.
+XDEBUG_REMOTE_HOST=$([ ! -z "$MAC_HOST" ] && echo "$MAC_HOST" || [ ! -z "$WINDOWS_HOST" ] && echo "$WINDOWS_HOST" || echo "$LINUX_HOST")
 
 # Set remote host
 sed -i "s/xdebug\.remote_host.*/xdebug\.remote_host = ${XDEBUG_REMOTE_HOST//./\\.}/g" ${APACHE_XDEBUG_PATH}
