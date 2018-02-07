@@ -17,7 +17,7 @@ Docker container with installed and configured Ubuntu, Apache, PHP7 and XDebug.
 * [Build Image](#build-image)
 * [Run Container](#run-container)
 * [Docker-Compose Section](#docker-compose-section)
-* [Example configuration with MySQL and Adminer](#example-configuration-with-mysql-and-adminer)
+* [Example Configuration with MySQL and Adminer](#example-configuration-with-mysql-and-adminer)
 * [Setup PHPStorm for XDebug with Docker](#setup-phpstorm-for-xdebug-with-docker)
 
 
@@ -69,7 +69,13 @@ services:
             - .:/var/www/html
 ```
 
-## Example configuration with MySQL and Adminer
+## Example Configuration with MySQL and Adminer
+
+* Copy following content and save as file `docker-compose.yml`
+* Make directory `mysql_datadir` in project root
+* Create `index.php` file with: `echo -e "<?php\nphpinfo();" > index.php` 
+* Run command `docker-compose up -d`
+* Open browser at `http://localhost:8000` (Apache) and `http://localhost:8080` (Adminer) 
 
 ```
 version: "3"
