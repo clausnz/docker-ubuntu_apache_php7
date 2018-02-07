@@ -63,9 +63,47 @@ services:
         image: "clausnz/ubuntu-apache-php:latest"
         restart: "always"
         ports:
-            - "8000:80"`
+            - "8000:80"
         volumes:
-            - .:/var/www/html`
+            - .:/var/www/html
+```
+
+## Example configuration with MySQL and Adminer
+
+```
+version: "3"
+
+# create following directories in project root:
+# ./mysql_datadir
+
+services:
+    web:
+        image: "clausnz/ubuntu-apache-php:latest"
+        restart: "always"
+        ports:
+            - "8000:80"
+        volumes:
+            - .:/var/www/html
+    db:
+        image: mysql
+        restart: always
+        volumes:
+            - ./mysql_datadir:/var/lib/mysql
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: example
+            MYSQL_DATABASE: example
+            MYSQL_USER: example
+            MYSQL_PASSWORD: example
+
+    adminer:
+        image: adminer
+        restart: always
+        ports:
+            - 8080:8080
+        environment:
+          - "ADMINER_DESIGN=lucas-sandery"
 ```
         
 ## Setup PHPStorm for XDebug with Docker
