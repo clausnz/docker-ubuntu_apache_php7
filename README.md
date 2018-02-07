@@ -17,6 +17,7 @@ Docker container with installed and configured Ubuntu, Apache, PHP7 and XDebug.
 * [Build Image](#build-image)
 * [Run Container](#run-container)
 * [Docker-Compose Section](#docker-compose-section)
+* [Example configuration with MySQL and Adminer](#example-configuration-with-mysql-and-dminer)
 * [Setup PHPStorm for XDebug with Docker](#setup-phpstorm-for-xdebug-with-docker)
 
 
