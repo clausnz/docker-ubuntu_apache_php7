@@ -24,7 +24,8 @@ fi
 
 # Set document root if given as env
 if [ -n "${DOCUMENT_ROOT}" ]; then
-    sed -i "s/DocumentRoot.*/DocumentRoot /var/www/html${DOCUMENT_ROOT}/g" ${VIRTUAL_HOST_FILE}
+    sed -i "s|DocumentRoot.*|DocumentRoot /var/www/html${DOCUMENT_ROOT}|g" ${VIRTUAL_HOST_FILE}
+    sed -i "s|<Directory.*|<Directory /var/www/html${DOCUMENT_ROOT}/>|g" ${VIRTUAL_HOST_FILE}
 fi
 
 exec "$@"
