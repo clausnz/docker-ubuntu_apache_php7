@@ -83,6 +83,8 @@ version: "3"
 # create following directories in project root:
 # ./mysql_datadir
 
+# set DOCUMENT_ROOT according to your project, where the index.php file is located (e.g. /public with most frameworks)
+
 services:
     web:
         image: "clausnz/ubuntu-apache-php:latest"
@@ -91,6 +93,8 @@ services:
             - "8000:80"
         volumes:
             - .:/var/www/html
+        environment:
+            - DOCUMENT_ROOT: /public
     db:
         image: mysql
         restart: always
