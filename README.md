@@ -94,7 +94,7 @@ services:
         volumes:
             - .:/var/www/html
         environment:
-            - DOCUMENT_ROOT: /public
+            - "DOCUMENT_ROOT: /public"
     db:
         image: mysql
         restart: always
