@@ -52,8 +52,21 @@ RUN apt-get update -y && apt-get install -y software-properties-common \
     php7.1-interbase \
     php-xdebug
 
+# configure Apache and create certificate
 COPY apache.conf /etc/apache2/sites-enabled/000-default.conf
-RUN a2enmod rewrite expires
+COPY apache-ssl.conf /etc/apache2/sites-enabled/default-ssl.conf
+COPY ssl-params.conf /etc/apache2/conf-available/ssl-params.conf
+RUN openssl \
+    req -x509 \
+    -nodes \
+    -days 3650 \
+    -newkey rsa:2048 \
+    -keyout /etc/ssl/private/apache-selfsigned.key \
+    -out /etc/ssl/certs/apache-selfsigned.crt \
+    -subj "/C=GB/ST=London/L=London/O=IT Business/OU=IT Department/CN=website.dev" \
+    && openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048 \
+    && a2enmod rewrite ssl headers expires \
+    && a2enconf ssl-params
 
 # entrypoint
 COPY docker-entrypoint.sh /usr/local/bin/
@@ -64,5 +77,5 @@ ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 COPY xdebug.ini /etc/php/7.1/cli/conf.d/xdebug.ini
 COPY xdebug.ini /etc/php/7.1/apache2/conf.d/xdebug.ini
 
-EXPOSE 80
+EXPOSE 80 443
 CMD ["/usr/sbin/apachectl", "-D FOREGROUND"]

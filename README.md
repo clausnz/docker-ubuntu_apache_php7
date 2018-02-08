@@ -51,6 +51,7 @@ The environment variables can be changed with the `-e` parameter
         --restart=always \
         --name my_ubuntu-apache-php \
         -p 8000:80 \
+        -p 4430:443 \
         -v $(pwd):/var/www/html/ \
         -v $(pwd)/apache_logs:/var/log/apache2/ \
         -e DOCUMENT_ROOT=/ \
@@ -69,6 +70,7 @@ services:
         restart: "always"
         ports:
             - "8000:80"
+            - "4430:443"
         volumes:
             - .:/var/www/html
             - ./apache_logs:/var/log/apache2
@@ -84,6 +86,7 @@ services:
 * Optional: Move any sql-files to `mysql_dumpdir` to run against database on startup 
 * Run command `docker-compose up -d`
 * Open browser at `http://localhost:8000` (Apache) and `http://localhost:8080` (Adminer) 
+* Make sure to accept the certificate warning when opening `https://localhost:4430` (Apache SSL)
 
 ```
 version: "3"
@@ -99,6 +102,7 @@ services:
         restart: "always"
         ports:
             - "8000:80"
+            - "4430:443"
         volumes:
             - .:/var/www/html
             - ./apache_logs:/var/log/apache2

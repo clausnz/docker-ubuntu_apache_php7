@@ -4,6 +4,7 @@ set -i
 APACHE_XDEBUG_PATH="/etc/php/7.1/apache2/conf.d/xdebug.ini"
 CLI_XDEBUG_PATH="/etc/php/7.1/cli/conf.d/xdebug.ini"
 VIRTUAL_HOST_FILE="/etc/apache2/sites-enabled/000-default.conf"
+VIRTUAL_HOST_FILE_SSL="/etc/apache2/sites-enabled/default-ssl.conf"
 
 MAC_HOST="$(dig +short docker.for.mac.host.internal)"
 WINDOWS_HOST="$(dig +short docker.for.win.host.internal)"
@@ -24,8 +25,12 @@ fi
 
 # Set document root if given as env
 if [ -n "${DOCUMENT_ROOT}" ]; then
+    # http
     sed -i "s|DocumentRoot.*|DocumentRoot /var/www/html${DOCUMENT_ROOT}|g" ${VIRTUAL_HOST_FILE}
     sed -i "s|<Directory.*|<Directory /var/www/html${DOCUMENT_ROOT}/>|g" ${VIRTUAL_HOST_FILE}
+    # https
+    sed -i "s|DocumentRoot.*|DocumentRoot /var/www/html${DOCUMENT_ROOT}|g" ${VIRTUAL_HOST_FILE_SSL}
+    sed -i "s|<Directory.*|<Directory /var/www/html${DOCUMENT_ROOT}/>|g" ${VIRTUAL_HOST_FILE_SSL}
 fi
 
 exec "$@"
