@@ -63,10 +63,13 @@ RUN openssl \
     -newkey rsa:2048 \
     -keyout /etc/ssl/private/apache-selfsigned.key \
     -out /etc/ssl/certs/apache-selfsigned.crt \
-    -subj "/C=GB/ST=London/L=London/O=IT Business/OU=IT Department/CN=website.dev" \
+    -subj "/C=GB/ST=London/L=London/O=IT Business/OU=IT Department/CN=localhost" \
     && openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048 \
     && a2enmod rewrite ssl headers expires \
-    && a2enconf ssl-params
+    && a2enconf ssl-params \
+    # Apache log output to standard docker log /proc/self/fd/{1/2}
+    && sed -i "s|ErrorLog.*|CustomLog /proc/self/fd/1 common\\nErrorLog /proc/self/fd/2|g" "/etc/apache2/apache2.conf" \
+    && chown -R www-data:www-data /var/www
 
 # entrypoint
 COPY docker-entrypoint.sh /usr/local/bin/
