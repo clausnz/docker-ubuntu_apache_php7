@@ -36,6 +36,7 @@ The environment variables can be changed with the `-e` parameter
 * `XDEBUG_REMOTE_PORT` - Default 9000
 * `DOCUMENT_ROOT` - Where your index.php is located. Default `/` (`/public` with most frameworks)
 * `DATE_TIMEZONE` - Sets the corresponding php.ini value
+* `LOG_TO_FILE` - If set to 1, log is written to /var/log/apache2 (= volume)
 
 ## Build Image
 
