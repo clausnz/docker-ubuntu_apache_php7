@@ -35,6 +35,7 @@ The environment variables can be changed with the `-e` parameter
 * `XDEBUG_REMOTE_HOST` - When using Mac or Windows as host, this variable is set automatically
 * `XDEBUG_REMOTE_PORT` - Default 9000
 * `DOCUMENT_ROOT` - Where your index.php is located. Default `/` (`/public` with most frameworks)
+* `DATE_TIMEZONE` - Sets the corresponding php.ini value
 
 ## Build Image
 
@@ -108,6 +109,7 @@ services:
             - ./apache_logs:/var/log/apache2
         environment:
             - DOCUMENT_ROOT=/
+            - DATE_TIMEZONE=Pacific/Auckland
     db:
         image: mysql
         restart: always
