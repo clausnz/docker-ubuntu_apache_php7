@@ -16,8 +16,6 @@ PHP_INI_APACHE="/etc/php/7.1/apache2/php.ini"
 PHP_INI_CLI="/etc/php/7.1/cli/php.ini"
 
 
-# set default log to docker default log output
-sed -i "s|ErrorLog.*|CustomLog /proc/self/fd/1 common\\nErrorLog /proc/self/fd/2|g" /etc/apache2/apache2.conf
 
 # Set remote host ip from docker var. Works best on Mac or Windows. May not work correctly for other OS
 XDEBUG_REMOTE_HOST=$([ ! -z "$MAC_HOST" ] && echo "$MAC_HOST" || [ ! -z "$WINDOWS_HOST" ] && echo "$WINDOWS_HOST" || echo "$LINUX_HOST")
