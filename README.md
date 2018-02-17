@@ -32,6 +32,7 @@ Docker container with installed and configured Ubuntu, Apache, PHP7 and XDebug.
 
 The environment variables can be changed with the `-e` parameter 
 
+* `APP_ENV` - set to `procuction` or `development`. If `APP_ENV` ist not set, container will run in `development` mode 
 * `XDEBUG_REMOTE_HOST` - When using Mac or Windows as host, this variable is set automatically
 * `XDEBUG_REMOTE_PORT` - Default 9000
 * `DOCUMENT_ROOT` - Where your index.php is located. Default `/` (`/public` with most frameworks)

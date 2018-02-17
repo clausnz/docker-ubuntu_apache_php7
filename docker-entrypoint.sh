@@ -80,8 +80,8 @@ if [ -n "${DOCUMENT_ROOT}" ]; then set_document_root; fi
 # Set data.timezone in php.ini if given as env
 if [ -n "${DATE_TIMEZONE}" ]; then set_date_timezone; fi
 
-# if APP_ENV is not set, but XDEBUG_REMOTE_HOST or XDEBUG_REMOTE_PORT > assume to run in development mode
-if [ -z "${APP_ENV}" ] &&  ([ -z "${XDEBUG_REMOTE_HOST}" ] || [ -z "${XDEBUG_REMOTE_PORT}" ]); then APP_ENV="development"; fi
+# if APP_ENV is not set, run in development mode
+if [ -z "${APP_ENV}" ]; then APP_ENV="development"; fi
 
 
 
