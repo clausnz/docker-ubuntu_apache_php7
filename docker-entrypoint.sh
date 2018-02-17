@@ -55,10 +55,10 @@ function set_xdebug_remote_host() {
     # declare vars
     MAC_HOST="$(dig +short docker.for.mac.host.internal)"
     WINDOWS_HOST="$(dig +short docker.for.win.host.internal)"
-    LINUX_HOST="$(netstat -nr | grep '^0\.0\.0\.0' | awk '{print $2}')"
+    OTHER_HOST="$(netstat -nr | grep '^0\.0\.0\.0' | awk '{print $2}')"
 
     # Set xdebug remote host ip from docker var. Works best on Mac or Windows. May not work correctly for other OS
-    XDEBUG_REMOTE_HOST=$([ ! -z "$MAC_HOST" ] && echo "$MAC_HOST" || [ ! -z "$WINDOWS_HOST" ] && echo "$WINDOWS_HOST" || echo "$LINUX_HOST")
+    XDEBUG_REMOTE_HOST=$([ ! -z "$MAC_HOST" ] && echo "$MAC_HOST" || [ ! -z "$WINDOWS_HOST" ] && echo "$WINDOWS_HOST" || echo "$OTHER_HOST")
 
     # Set xdebug remote host
     \sed -i "s/xdebug\.remote_host.*/xdebug\.remote_host = ${XDEBUG_REMOTE_HOST//./\\.}/g" /xdebug.ini
@@ -91,8 +91,7 @@ if [ -z "${APP_ENV}" ]; then APP_ENV="development"; fi
 
 if [ -n "${APP_ENV}" ] && [ "${APP_ENV}" == "development" ]; then
 
-    # copy debug configuration
-    # TODO: create symbolic links if possible
+    # link debug configuration
     \ln -sf /xdebug.ini "$APACHE_XDEBUG_PATH" && \ln -sf /xdebug.ini "$CLI_XDEBUG_PATH"
 
     # set xdebug remote host
