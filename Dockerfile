@@ -77,8 +77,7 @@ RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 
 # xdebug
-COPY xdebug.ini /etc/php/7.1/cli/conf.d/xdebug.ini
-COPY xdebug.ini /etc/php/7.1/apache2/conf.d/xdebug.ini
+COPY xdebug.ini /xdebug.ini
 
 EXPOSE 80 443
 CMD ["/usr/sbin/apachectl", "-D FOREGROUND"]
